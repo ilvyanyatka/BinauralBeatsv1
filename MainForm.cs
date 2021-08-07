@@ -3,17 +3,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 using System.Windows.Media;
 using WMPLib;
-using AxWMPLib;
 
 
 namespace BinauralBeatsv1
@@ -144,16 +139,6 @@ namespace BinauralBeatsv1
             }
         }
 
-        private void axWindowsMediaPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
-        {
-            
-        }
-
-        private void axWindowsMediaPlayer_MediaError(object sender, AxWMPLib._WMPOCXEvents_MediaErrorEvent e)
-        {
-            lError.Text = e.ToString() + "\r\n" + FileToPlay;
-        }
-
         private void tVolume_Scroll(object sender, EventArgs e)
         {
 
@@ -167,7 +152,17 @@ namespace BinauralBeatsv1
 
         private void linkLabelC_DoubleClick(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.ilvyanyatka.com");
+            System.Diagnostics.Process.Start("https://www.ilvyanyatka.com");
+        }
+
+        private void linkLabelC_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.ilvyanyatka.com");
+        }
+
+        private void linkLabelTutorial_DoubleClick(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://ilvyanyatka.com/binaural-beats-application/");
         }
     }
 }

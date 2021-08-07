@@ -163,6 +163,7 @@ namespace BinauralBeatsv1
             this.linkLabelTutorial.TabStop = true;
             this.linkLabelTutorial.Text = "Tutorial";
             this.linkLabelTutorial.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelTutorial_LinkClicked);
+            this.linkLabelTutorial.DoubleClick += new System.EventHandler(this.linkLabelTutorial_DoubleClick);
             // 
             // linkLabelC
             // 
@@ -173,6 +174,7 @@ namespace BinauralBeatsv1
             this.linkLabelC.TabIndex = 13;
             this.linkLabelC.TabStop = true;
             this.linkLabelC.Text = "(c) Victoria Kazachenko";
+            this.linkLabelC.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelC_LinkClicked);
             this.linkLabelC.DoubleClick += new System.EventHandler(this.linkLabelC_DoubleClick);
             // 
             // label3
