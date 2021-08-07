@@ -53,7 +53,7 @@ namespace BinauralBeatsv1
                 new Pattern(
                     1,
                     "Delta",
-                    "Binaural beats in the alpha pattern are at a frequency of 7–13 Hz and may encourage relaxation.\r\nRight: 440 Hz, Left: 438 Hz",
+                    "Binaural beats in the delta pattern operate at a frequency of 0.5–4 Hz with links to a dreamless sleep. In the study, people who received a delta pattern frequency during sleep entered a deeper stage of sleep, according to electroencephalogram (EEG) brain scan results.",
                     "BB delta pattern 440-438.wav"));
             arrPatterns.Add(
                 new Pattern(
@@ -73,12 +73,11 @@ namespace BinauralBeatsv1
             lbPattern.ValueMember = "Id";
             lbPattern.DisplayMember = "Text";
 
-#if USE_AX_PLAYER
-#else
+
             player.MediaEnded += Player_MediaEnded;
             player.MediaOpened += Player_MediaOpened;
             player.MediaFailed += Player_MediaFailed;
-#endif
+
             lbPattern.SelectedIndex = 0;
 
         }
@@ -98,12 +97,8 @@ namespace BinauralBeatsv1
 
         private void bStop_Click(object sender, EventArgs e)
         {
-#if USE_AX_PLAYER
-            axWindowsMediaPlayer.Ctlcontrols.stop();
-#else
             player.Stop();
             player.Close();
-#endif
             bStop.Enabled = false;
             bPlay.Enabled = true;
 
@@ -118,20 +113,15 @@ namespace BinauralBeatsv1
 
         private void bPlay_Click(object sender, EventArgs e)
         {
-            lError.Text = "";
+            lError.Text = FileToPlay;
             int volume = tVolume.Value;
             playTimeSpan = timePicker.Value.TimeOfDay;
 
-#if USE_AX_PLAYER
-            axWindowsMediaPlayer.URL = FileToPlay;
-            axWindowsMediaPlayer.settings.volume = volume;
-            axWindowsMediaPlayer.settings.setMode("Loop", true);
-            axWindowsMediaPlayer.Ctlcontrols.play();
-#else
+
             Uri uri = new Uri(FileToPlay);
             player.Volume = (double)volume/100;
             player.Open(uri);
-#endif
+
             bStop.Enabled = true;
 
         }
@@ -167,11 +157,17 @@ namespace BinauralBeatsv1
         private void tVolume_Scroll(object sender, EventArgs e)
         {
 
-#if USE_AX_PLAYER
-            axWindowsMediaPlayer.settings.volume = tVolume.Value;
-#else
             player.Volume = (double)tVolume.Value/100;
-#endif
+        }
+
+        private void linkLabelTutorial_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://ilvyanyatka.com/binaural-beats-application/");
+        }
+
+        private void linkLabelC_DoubleClick(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.ilvyanyatka.com");
         }
     }
 }
